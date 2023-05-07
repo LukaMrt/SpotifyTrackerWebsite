@@ -2,11 +2,10 @@ import type {Component} from "solid-js";
 
 const App: Component = () => {
 
-    const test = 1;
-
     return (
         <>
-            <p>{test}</p>
+            <h1>Spotify tracker</h1>
+            <p>Bienvenue sur mes statistiques d'écoute Spotify</p>
         </>
     );
 };
