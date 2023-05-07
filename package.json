@@ -1,0 +1,11 @@
+{
+  "name": "spotify-tracker-website",
+  "version": "0.1.0",
+  "description": "Website for Spotify Tracker",
+  "main": "",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Luka Maret",
+  "license": "MIT"
+}
