@@ -1,22 +1,32 @@
-import {Controller, Get, Req} from "@nestjs/common";
+import {Controller, Get, Param, Query} from "@nestjs/common";
 import {TrackService} from "./track.service";
-import {Request} from "express";
+import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
+import {TrackEntity} from "./track.entity";
+import * as utils from "../utils/parser";
 
+@ApiTags("track")
 @Controller("track")
 export class TrackController {
     constructor(private readonly trackService: TrackService) {
     }
 
     @Get()
-    findAll(@Req() req: Request) {
+    @ApiQuery({name: "limit", required: false, description: "Limit of tracks to return", type: Number})
+    @ApiOkResponse({description: "Returns all tracks", type: TrackEntity, isArray: true})
+    findAll(@Query() query) {
+        const limit = utils.parseInt(query.limit, 10);
+        return this.trackService.findAll(limit);
+    }
 
-        const givenLimit = req.query.limit;
-        let limit = 10;
+    @Get("name/:name")
+    @ApiOkResponse({description: "Returns a track by name", type: TrackEntity})
+    findByName(@Param("name") name: string) {
+        return this.trackService.findByName(name);
+    }
 
-        if (givenLimit !== undefined && !isNaN(Number(givenLimit))) {
-            limit = Number(givenLimit);
-        }
-
-        return this.trackService.findAll(Number(limit));
+    @Get(":id")
+    @ApiOkResponse({description: "Returns a track by id", type: TrackEntity})
+    findById(@Param("id") id: string) {
+        return this.trackService.findById(+id);
     }
 }
