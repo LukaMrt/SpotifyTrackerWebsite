@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  id     Int      @id @default(autoincrement())
+  url    String   @db.VarChar(255)
+  uri    String   @db.VarChar(255)
+  name   String   @db.VarChar(255)
+  Author Author[]
+}
+
+model Author {
+  id_track  Int
+  id_artist Int
+  Track     Track  @relation(fields: [id_track], references: [id], onUpdate: Restrict, map: "Author_ibfk_1")
+  Artist    Artist @relation(fields: [id_artist], references: [id], onUpdate: Restrict, map: "Author_ibfk_2")
+
+  @@id([id_track, id_artist])
+  @@index([id_artist], map: "id_artist")
+}
+
+model Listening {
+  date        DateTime @id @default(now()) @db.Timestamp(0)
+  id_track    Int
+  id_playlist Int
+  Track       Track    @relation(fields: [id_track], references: [id], onUpdate: Restrict, map: "Listening_ibfk_1")
+  Playlist    Playlist @relation(fields: [id_playlist], references: [id], onUpdate: Restrict, map: "Listening_ibfk_2")
+
+  @@index([id_playlist], map: "id_playlist")
+  @@index([id_track], map: "id_track")
+}
+
+model Playlist {
+  id        Int         @id @default(autoincrement())
+  url       String      @db.VarChar(255)
+  uri       String      @db.VarChar(255)
+  name      String      @db.VarChar(255)
+  Listening Listening[]
+}
+
+model Track {
+  id        Int         @id @default(autoincrement())
+  url       String      @db.VarChar(255)
+  uri       String      @db.VarChar(255)
+  name      String      @db.VarChar(255)
+  Author    Author[]
+  Listening Listening[]
+}

@@ -4,6 +4,9 @@
   "description": "Website for Spotify Tracker",
   "main": "",
   "scripts": {
+    "dev": "pnpm run -r dev",
+    "build": "pnpm run -r build",
+    "lint": "pnpm run -r lint"
   },
   "keywords": [],
   "author": "Luka Maret",
