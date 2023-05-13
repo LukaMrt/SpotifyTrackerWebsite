@@ -1,11 +1,11 @@
-import {Controller, Get, Query} from '@nestjs/common';
-import {PlaylistService} from './playlist.service';
+import {Controller, Get, Query} from "@nestjs/common";
+import {PlaylistService} from "./playlist.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import {PlaylistEntity} from "./playlist.entity";
 
-@ApiTags('playlist')
-@Controller('playlist')
+@ApiTags("playlist")
+@Controller("playlist")
 export class PlaylistController {
     constructor(private readonly playlistService: PlaylistService) {
     }

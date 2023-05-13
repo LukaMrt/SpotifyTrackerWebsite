@@ -1,11 +1,11 @@
-import {Controller, Get, Query} from '@nestjs/common';
-import {AuthorService} from './author.service';
+import {Controller, Get, Query} from "@nestjs/common";
+import {AuthorService} from "./author.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import {AuthorEntity} from "./author.entity";
 
-@ApiTags('author')
-@Controller('author')
+@ApiTags("author")
+@Controller("author")
 export class AuthorController {
     constructor(private readonly authorService: AuthorService) {
     }

@@ -6,17 +6,17 @@ import {ApiProperty} from "@nestjs/swagger";
 export class ListeningEntity implements Listening {
 
     @ApiProperty()
-    date: Date
+    public date: Date;
 
     @ApiProperty()
-    id_track: number
+    public id_track: number;
 
     @ApiProperty()
-    id_playlist: number
+    public id_playlist: number;
 
     @ApiProperty()
-    Track: TrackEntity
+    public Track: TrackEntity;
 
     @ApiProperty()
-    Playlist: PlaylistEntity
+    public Playlist: PlaylistEntity;
 }

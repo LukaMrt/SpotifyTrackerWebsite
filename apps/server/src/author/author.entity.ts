@@ -6,14 +6,14 @@ import {ApiProperty} from "@nestjs/swagger";
 export class AuthorEntity implements Author {
 
     @ApiProperty()
-    id_track: number
+    public id_track: number;
 
     @ApiProperty()
-    id_artist: number
+    public id_artist: number;
 
     @ApiProperty()
-    Track: TrackEntity
+    public Track: TrackEntity;
 
     @ApiProperty()
-    Artist: ArtistEntity
+    public Artist: ArtistEntity;
 }

@@ -1,11 +1,11 @@
-import {Controller, Get, Query} from '@nestjs/common';
-import {ListeningService} from './listening.service';
+import {Controller, Get, Query} from "@nestjs/common";
+import {ListeningService} from "./listening.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import {ListeningEntity} from "./listening.entity";
 
-@ApiTags('listening')
-@Controller('listening')
+@ApiTags("listening")
+@Controller("listening")
 export class ListeningController {
     constructor(private readonly listeningService: ListeningService) {
     }

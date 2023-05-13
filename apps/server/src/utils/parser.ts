@@ -7,4 +7,4 @@ export const parseInt = (value: any, defaultValue: number): number => {
         return defaultValue;
     }
     return parsedValue;
-}
+};

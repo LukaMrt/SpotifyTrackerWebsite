@@ -2,7 +2,7 @@ import {Injectable} from "@nestjs/common";
 import {PrismaService} from "../prisma/prisma.service";
 
 @Injectable()
-export class TrackService {
+export default class TrackService {
 
     constructor(private prisma: PrismaService) {
     }
@@ -24,7 +24,7 @@ export class TrackService {
                 }
             },
             take: 1
-        })
+        });
     }
 
     findById(id: number) {
@@ -35,6 +35,6 @@ export class TrackService {
                 }
             },
             take: 1
-        })
+        });
     }
 }

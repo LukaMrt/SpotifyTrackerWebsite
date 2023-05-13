@@ -1,11 +1,11 @@
-import {Controller, Get, Query} from '@nestjs/common';
-import {ArtistService} from './artist.service';
+import {Controller, Get, Query} from "@nestjs/common";
+import {ArtistService} from "./artist.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import {ArtistEntity} from "./artist.entity";
 
-@ApiTags('artist')
-@Controller('artist')
+@ApiTags("artist")
+@Controller("artist")
 export class ArtistController {
     constructor(private readonly artistService: ArtistService) {
     }

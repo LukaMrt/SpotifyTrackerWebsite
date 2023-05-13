@@ -5,20 +5,20 @@ import {ListeningEntity} from "../listening/listening.entity";
 
 export class TrackEntity implements Track {
     @ApiProperty()
-    id: number
+    public id: number;
 
     @ApiProperty()
-    url: string
+    public url: string;
 
     @ApiProperty()
-    uri: string
+    public uri: string;
 
     @ApiProperty()
-    name: string
+    public name: string;
 
     @ApiProperty()
-    Author: AuthorEntity[]
+    public Author: AuthorEntity[];
 
     @ApiProperty()
-    Listening: ListeningEntity[]
+    public Listening: ListeningEntity[];
 }
