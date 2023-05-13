@@ -13,9 +13,9 @@ export class ListeningController {
     @Get()
     @ApiQuery({name: "limit", required: false, description: "Limit of tracks to return", type: Number})
     @ApiOkResponse({description: "Returns all tracks", type: ListeningEntity, isArray: true})
-    findAll(@Query() query) {
+    async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return this.listeningService.findAll(limit);
+        return {value: await this.listeningService.findAll(limit)};
     }
 
     @Get("count")
@@ -29,10 +29,10 @@ export class ListeningController {
         type: String,
         enum: ["day", "week", "month", "year"]
     })
-    count(@Query() query) {
+    async count(@Query() query) {
         const after = utils.parseDate(query.after, new Date(0));
         const before = utils.parseDate(query.before, new Date());
         const group = utils.parseStringEnum(query.group, ["day", "week", "month", "year"], "id");
-        return this.listeningService.count(after, before, group);
+        return {listening: await this.listeningService.count(after, before, group)};
     }
 }

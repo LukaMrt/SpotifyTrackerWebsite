@@ -13,9 +13,9 @@ export class PlaylistController {
     @Get()
     @ApiQuery({name: "limit", required: false, description: "Limit of tracks to return", type: Number})
     @ApiOkResponse({description: "Returns all tracks", type: PlaylistEntity, isArray: true})
-    findAll(@Query() query) {
+    async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return this.playlistService.findAll(limit);
+        return {value: await this.playlistService.findAll(limit)};
     }
 
 }

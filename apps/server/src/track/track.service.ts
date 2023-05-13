@@ -24,6 +24,11 @@ export default class TrackService {
                 }
             },
             take: 1
+        }).then((tracks) => {
+            if (tracks.length === 0) {
+                return null;
+            }
+            return tracks[0];
         });
     }
 
@@ -35,6 +40,11 @@ export default class TrackService {
                 }
             },
             take: 1
+        }).then((tracks) => {
+            if (tracks.length === 0) {
+                return null;
+            }
+            return tracks[0];
         });
     }
 }

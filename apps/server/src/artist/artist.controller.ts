@@ -13,8 +13,8 @@ export class ArtistController {
     @Get()
     @ApiQuery({name: "limit", required: false, description: "Limit of artists to return", type: Number})
     @ApiOkResponse({description: "Returns all tracks", type: ArtistEntity, isArray: true})
-    findAll(@Query() query) {
+    async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return this.artistService.findAll(limit);
+        return {value: await this.artistService.findAll(limit)};
     }
 }

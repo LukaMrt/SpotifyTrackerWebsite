@@ -13,9 +13,9 @@ export class TrackController {
     @Get()
     @ApiQuery({name: "limit", required: false, description: "Limit of tracks to return", type: Number})
     @ApiOkResponse({description: "Returns all tracks", type: TrackEntity, isArray: true})
-    findAll(@Query() query) {
+    async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return this.trackService.findAll(limit);
+        return {value: this.trackService.findAll(limit)};
     }
 
     @Get("name/:name")
@@ -27,6 +27,6 @@ export class TrackController {
     @Get(":id")
     @ApiOkResponse({description: "Returns a track by id", type: TrackEntity})
     findById(@Param("id") id: string) {
-        return this.trackService.findById(+id);
+        return this.trackService.findById(utils.parseInt(id, 0));
     }
 }

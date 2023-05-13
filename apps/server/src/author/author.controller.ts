@@ -13,8 +13,8 @@ export class AuthorController {
     @Get()
     @ApiQuery({name: "limit", required: false, description: "Limit of authors to return", type: Number})
     @ApiOkResponse({description: "Returns all tracks", type: AuthorEntity, isArray: true})
-    findAll(@Query() query) {
+    async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return this.authorService.findAll(limit);
+        return {value: await this.authorService.findAll(limit)};
     }
 }
