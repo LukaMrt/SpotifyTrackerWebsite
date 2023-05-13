@@ -17,4 +17,10 @@ export class ArtistController {
         const limit = utils.parseInt(query.limit, 10);
         return {value: await this.artistService.findAll(limit)};
     }
+
+    @Get(":id")
+    @ApiOkResponse({description: "Returns a single artist by id", type: ArtistEntity})
+    async findOne(@Query() query) {
+        return {value: await this.artistService.findById(utils.parseInt(query.id, 10))};
+    }
 }

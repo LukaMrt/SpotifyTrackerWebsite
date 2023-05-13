@@ -1,9 +1,10 @@
 import {Track} from "@prisma/client";
 import {ApiProperty} from "@nestjs/swagger";
-import {AuthorEntity} from "../author/author.entity";
 import {ListeningEntity} from "../listening/listening.entity";
+import {ArtistEntity} from "../artist/artist.entity";
 
 export class TrackEntity implements Track {
+
     @ApiProperty()
     public id: number;
 
@@ -17,9 +18,9 @@ export class TrackEntity implements Track {
     public name: string;
 
     @ApiProperty()
-    public Author: AuthorEntity[];
+    public artists: ArtistEntity[];
 
     @ApiProperty()
-    public Listening: ListeningEntity[];
+    public listening: ListeningEntity[];
 
 }

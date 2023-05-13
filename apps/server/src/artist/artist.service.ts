@@ -17,6 +17,24 @@ export class ArtistService {
                     }
                 }
             }
+        }).then((artists) => {
+            return artists.map((artist) => {
+                return {
+                    id: artist.id,
+                    url: artist.url,
+                    uri: artist.uri,
+                    name: artist.name,
+                    tracks: artist.Author.map((author) => {
+                        return author.Track;
+                    })
+                };
+            });
+        });
+    }
+
+    findById(id: number) {
+        return this.prisma.artist.findUnique({
+            where: {id}
         });
     }
 }

@@ -15,10 +15,10 @@ export class ListeningEntity implements Listening {
     public id_playlist: number;
 
     @ApiProperty()
-    public Track: TrackEntity;
+    public track: TrackEntity;
 
     @ApiProperty()
-    public Playlist: PlaylistEntity;
+    public playlists: PlaylistEntity;
 
 }
 

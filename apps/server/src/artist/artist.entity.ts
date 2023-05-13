@@ -1,6 +1,6 @@
 import {Artist} from "@prisma/client";
-import {AuthorEntity} from "../author/author.entity";
 import {ApiProperty} from "@nestjs/swagger";
+import {TrackEntity} from "../track/track.entity";
 
 export class ArtistEntity implements Artist {
 
@@ -17,6 +17,6 @@ export class ArtistEntity implements Artist {
     public name: string;
 
     @ApiProperty()
-    public Author: AuthorEntity[];
+    public tracks: TrackEntity[];
 
 }

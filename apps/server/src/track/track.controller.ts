@@ -15,7 +15,7 @@ export class TrackController {
     @ApiOkResponse({description: "Returns all tracks", type: TrackEntity, isArray: true})
     async findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
-        return {value: this.trackService.findAll(limit)};
+        return {value: await this.trackService.findAll(limit)};
     }
 
     @Get("name/:name")

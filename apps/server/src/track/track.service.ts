@@ -11,8 +11,29 @@ export default class TrackService {
         return this.prisma.track.findMany({
             take: limit,
             include: {
-                Author: true
+                Author: {
+                    include: {
+                        Artist: true
+                    }
+                }
             }
+        }).then((tracks) => {
+            return tracks.map((track) => {
+                return {
+                    id: track.id,
+                    url: track.url,
+                    uri: track.uri,
+                    name: track.name,
+                    artists: track.Author.map((author) => {
+                        return {
+                            id: author.Artist.id,
+                            url: author.Artist.url,
+                            uri: author.Artist.uri,
+                            name: author.Artist.name
+                        };
+                    })
+                };
+            });
         });
     }
 

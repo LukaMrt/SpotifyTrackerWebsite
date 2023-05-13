@@ -17,6 +17,6 @@ export class PlaylistEntity implements Playlist {
     public name: string;
 
     @ApiProperty()
-    public Listening: ListeningEntity[];
+    public listenings: ListeningEntity[];
 
 }
