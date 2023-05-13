@@ -18,4 +18,5 @@ export class ArtistEntity implements Artist {
 
     @ApiProperty()
     public Author: AuthorEntity[];
+
 }

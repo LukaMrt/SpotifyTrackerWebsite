@@ -19,4 +19,15 @@ export class ListeningEntity implements Listening {
 
     @ApiProperty()
     public Playlist: PlaylistEntity;
+
+}
+
+export class CountListening {
+
+    @ApiProperty()
+    public date: string;
+
+    @ApiProperty()
+    public count: number;
+
 }

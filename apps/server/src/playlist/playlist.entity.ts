@@ -18,4 +18,5 @@ export class PlaylistEntity implements Playlist {
 
     @ApiProperty()
     public Listening: ListeningEntity[];
+
 }

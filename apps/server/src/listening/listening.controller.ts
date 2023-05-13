@@ -2,7 +2,7 @@ import {Controller, Get, Query} from "@nestjs/common";
 import {ListeningService} from "./listening.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
-import {ListeningEntity} from "./listening.entity";
+import {CountListening, ListeningEntity} from "./listening.entity";
 
 @ApiTags("listening")
 @Controller("listening")
@@ -16,5 +16,23 @@ export class ListeningController {
     findAll(@Query() query) {
         const limit = utils.parseInt(query.limit, 10);
         return this.listeningService.findAll(limit);
+    }
+
+    @Get("count")
+    @ApiOkResponse({description: "Returns the number of listening", type: CountListening})
+    @ApiQuery({name: "after", required: false, description: "Only count listening after this date", type: Date})
+    @ApiQuery({name: "before", required: false, description: "Only count listening before this date", type: Date})
+    @ApiQuery({
+        name: "group",
+        required: false,
+        description: "Group by day, month or year",
+        type: String,
+        enum: ["day", "week", "month", "year"]
+    })
+    count(@Query() query) {
+        const after = utils.parseDate(query.after, new Date(0));
+        const before = utils.parseDate(query.before, new Date());
+        const group = utils.parseStringEnum(query.group, ["day", "week", "month", "year"], "id");
+        return this.listeningService.count(after, before, group);
     }
 }

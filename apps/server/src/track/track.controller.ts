@@ -1,8 +1,8 @@
 import {Controller, Get, Param, Query} from "@nestjs/common";
-import {TrackService} from "./track.service";
 import {ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import {TrackEntity} from "./track.entity";
 import * as utils from "../utils/parser";
+import TrackService from "./track.service";
 
 @ApiTags("track")
 @Controller("track")
