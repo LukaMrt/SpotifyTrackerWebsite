@@ -25,7 +25,7 @@ export class ListeningController {
     @ApiQuery({
         name: "group",
         required: false,
-        description: "Group by day, month or year",
+        description: "Group by day, week, month or year",
         type: String,
         enum: ["day", "week", "month", "year"]
     })

@@ -1,6 +1,6 @@
 import {CountListening} from "../listening/listening.entity";
 
-interface DatedObject {
+export interface DatedObject {
     date: Date;
 }
 
@@ -11,7 +11,7 @@ const genericGroupBy = (objects: DatedObject[], buildKey: (date: Date) => string
         const value = groups.get(key) || 0;
         groups.set(key, value + 1);
     });
-    return Array.from(groups.entries()).map(([date, count]) => ({date, count}));
+    return Array.from(groups.entries()).map(([date, count]) => ({date: date, count: Math.round(count / 2)}));
 };
 
 export const groupByDay = (objects: DatedObject[]): CountListening[] => {
