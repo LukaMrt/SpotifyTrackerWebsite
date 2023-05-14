@@ -20,3 +20,13 @@ export class ArtistEntity implements Artist {
     public tracks: TrackEntity[];
 
 }
+
+export class ArtistCount {
+
+    @ApiProperty()
+    public name: string;
+
+    @ApiProperty()
+    public count: number;
+
+}

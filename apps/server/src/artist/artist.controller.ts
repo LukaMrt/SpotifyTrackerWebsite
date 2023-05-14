@@ -2,7 +2,7 @@ import {Controller, Get, Query} from "@nestjs/common";
 import {ArtistService} from "./artist.service";
 import * as utils from "../utils/parser";
 import {ApiOkResponse, ApiParam, ApiQuery, ApiTags} from "@nestjs/swagger";
-import {ArtistEntity} from "./artist.entity";
+import {ArtistCount, ArtistEntity} from "./artist.entity";
 import {CountListening} from "../listening/listening.entity";
 
 @ApiTags("artist")
@@ -43,5 +43,15 @@ export class ArtistController {
         const before = utils.parseDate(query.before, new Date());
         const group = utils.parseStringEnum(query.group, ["day", "week", "month", "year"], "week");
         return {value: await this.artistService.count(utils.parseInt(query.id, 10), after, before, group)};
+    }
+
+    @Get("count")
+    @ApiOkResponse({description: "Returns the listening number of all artists", type: ArtistCount})
+    @ApiQuery({name: "after", required: false, description: "Only count listening after this date", type: Date})
+    @ApiQuery({name: "before", required: false, description: "Only count listening before this date", type: Date})
+    async countAll(@Query() query) {
+        const after = utils.parseDate(query.after, new Date(0));
+        const before = utils.parseDate(query.before, new Date());
+        return {value: await this.artistService.countAll(after, before)};
     }
 }
